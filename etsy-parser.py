@@ -26,7 +26,7 @@ class EtsyParser:
     
     def get_product_cards(self, url):
         self.driver.get(url)
-        time.sleep(2)  # Даем странице загрузиться
+        time.sleep(2)
         
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         cards = soup.select('div[data-listing-card-container]')
@@ -57,11 +57,9 @@ class EtsyParser:
 def main():
     parser = EtsyParser()
     try:
-        # Тестовый поиск по DROPS Air
         search_url = "https://www.etsy.com/search?q=drops+air"
         products = parser.get_product_cards(search_url)
         
-        # Выводим результаты
         print(f"Found {len(products)} products:")
         for product in products:
             print("\nProduct:")
